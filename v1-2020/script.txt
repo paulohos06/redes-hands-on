@@ -1,0 +1,134 @@
+INSTRUÇÕES
+===========
+- Executar cada bloco de comando nos respectivos dispositivos de rede.
+- Realizar teste de conectividade em todos os dispositivos finais.
+
+1) Switch AC1
+! aula 02
+enable
+configure terminal
+hostname AC1
+end
+wr
+
+! aula 03
+enable
+configure terminal
+vlan 100
+name FINANCEIRO
+exit
+interface fa0/1
+switchport mode access
+switchport access vlan 100
+exit
+interface fa0/2
+switchport mode access
+switchport access vlan 100
+end
+wr
+
+2) Switch AC2
+! aula 02
+enable
+configure terminal
+hostname AC2
+end
+wr
+
+! aula 03
+enable
+configure terminal
+vlan 200
+name RH
+exit
+interface f0/1
+switchport mode access
+switchport access vlan 200
+exit
+interface fa0/2
+switchport mode access
+switchport access vlan 200
+end
+wr
+
+3) Switch AC3
+! aula 02
+enable
+configure terminal
+hostname AC3
+end
+wr
+
+! aula 03
+enable
+configure terminal
+vlan 300
+name DIRETORIA
+exit
+interface f0/1
+switchport mode access
+switchport access vlan 300
+exit
+interface f0/2
+switchport mode access
+switchport access vlan 300
+end
+wr
+
+4) Switch AC4
+! aula 02
+enable
+configure terminal
+hostname AC4
+end
+wr
+
+! aula 03
+enable
+configure terminal
+vlan 100
+name FINANCEIRO
+exit
+vlan 200
+name RH
+exit
+interface fa0/1
+switchport mode access
+switchport access vlan 100
+exit
+interface fa0/2
+switchport mode access
+switchport access vlan 200
+end
+wr
+
+
+5) Switch CORE 1
+! aula 03
+enable
+configure terminal
+hostname CORE4
+vlan 100
+name FINANCEIRO
+exit
+vlan 200
+name RH
+exit
+vlan 300
+name DIRETORIA
+exit
+interface g1/0/3
+switchport mode trunk
+exit
+interface g1/0/4
+switchport mode trunk
+exit
+interface g1/0/5
+switchport mode trunk
+exit
+interface g1/0/6
+switchport mode trunk
+end
+wr
+
+
