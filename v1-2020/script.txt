@@ -2,6 +2,10 @@ INSTRUÇÕES
 ===========
 - Executar cada bloco de comando nos respectivos dispositivos de rede.
 - Realizar teste de conectividade em todos os dispositivos finais.
+- Comandos de verificação:
+  -- show vlan brief
+  -- show interfaces trunk
+  -- show running-config
 
 1) Switch AC1
 ! aula 02
@@ -10,7 +14,6 @@ configure terminal
 hostname AC1
 end
 wr
-
 ! aula 03
 enable
 configure terminal
@@ -26,6 +29,7 @@ switchport mode access
 switchport access vlan 100
 end
 wr
+!
 
 2) Switch AC2
 ! aula 02
@@ -34,7 +38,6 @@ configure terminal
 hostname AC2
 end
 wr
-
 ! aula 03
 enable
 configure terminal
@@ -50,6 +53,7 @@ switchport mode access
 switchport access vlan 200
 end
 wr
+!
 
 3) Switch AC3
 ! aula 02
@@ -58,7 +62,6 @@ configure terminal
 hostname AC3
 end
 wr
-
 ! aula 03
 enable
 configure terminal
@@ -74,6 +77,7 @@ switchport mode access
 switchport access vlan 300
 end
 wr
+!
 
 4) Switch AC4
 ! aula 02
@@ -82,7 +86,6 @@ configure terminal
 hostname AC4
 end
 wr
-
 ! aula 03
 enable
 configure terminal
@@ -101,13 +104,13 @@ switchport mode access
 switchport access vlan 200
 end
 wr
-
+!
 
 5) Switch CORE 1
 ! aula 03
 enable
 configure terminal
-hostname CORE4
+hostname CORE1
 vlan 100
 name FINANCEIRO
 exit
@@ -130,5 +133,24 @@ interface g1/0/6
 switchport mode trunk
 end
 wr
+! aula 04
+enable
+configure terminal
+interface vlan 100
+ip address 172.16.0.1 255.255.255.0
+no shutdown
+exit
+interface vlan 200
+ip address 172.16.10.1 255.255.255.0
+no shutdown
+exit
+interface vlan 300
+ip address 172.16.20.1 255.255.255.0
+no shutdown
+exit
+ip routing
+end
+wr
+!
 
 
