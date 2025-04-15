@@ -29,6 +29,14 @@ switchport mode access
 switchport access vlan 100
 end
 wr
+! aula 05
+enable
+configure terminal
+interface fa0/3
+switchport mode access
+switchport access vlan 100
+end
+wr
 !
 
 2) Switch AC2
@@ -49,6 +57,14 @@ switchport mode access
 switchport access vlan 200
 exit
 interface fa0/2
+switchport mode access
+switchport access vlan 200
+end
+wr
+! aula 05
+enable
+configure terminal
+interface fa0/3
 switchport mode access
 switchport access vlan 200
 end
@@ -77,6 +93,14 @@ switchport mode access
 switchport access vlan 300
 end
 wr
+! aula 05
+enable
+configure terminal
+interface fa0/3
+switchport mode access
+switchport access vlan 300
+end
+wr
 !
 
 4) Switch AC4
@@ -100,6 +124,18 @@ switchport mode access
 switchport access vlan 100
 exit
 interface fa0/2
+switchport mode access
+switchport access vlan 200
+end
+wr
+! aula 05
+enable
+configure terminal
+interface fa0/3
+switchport mode access
+switchport access vlan 100
+exit
+interface fa0/4
 switchport mode access
 switchport access vlan 200
 end
@@ -151,6 +187,44 @@ exit
 ip routing
 end
 wr
+! aula 05
+enable
+configure terminal
+vlan 400
+name DC
+exit
+interface gi1/0/7
+switchport mode trunk
+exit
+interface vlan 400
+ip address 10.0.0.1 255.255.255.0
+no shutdown
+exit
+interface vlan 100
+ip helper-address 10.0.0.20
+exit
+interface vlan 200
+ip helper-address 10.0.0.20
+exit
+interface vlan 300
+ip helper-address 10.0.0.20
+exit
+end
+wr
+!
+
+6) Switch DC 2
+! aula 05
+enable
+configure terminal
+hostname DC2
+vlan 400
+name DC
+exit
+interface fa0/1
+switchport mode access
+switchport access vlan
+exit
 !
 
 
