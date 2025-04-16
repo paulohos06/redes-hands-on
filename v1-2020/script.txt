@@ -249,8 +249,36 @@ hostname ISP-BATATA
 interface g0/6
 ip add 10.99.99.1 255.255.255.0
 no shutdown
+end
+wr
+! aula 07
+enable
+configure terminal
+ip route 172.16.0.0 255.255.255.0 10.99.99.10
+ip route 172.16.10.0 255.255.255.0 10.99.99.10
+ip route 172.16.20.0 255.255.255.0 10.99.99.10
+ip route 10.0.0.0 255.255.255.0 10.99.99.10
+ip route 0.0.0.0 0.0.0.0 1.1.1.2
+access-list 1 permit any
+interface g6/0
+ip nat inside
 exit
+interface g7/0
+ip nat outside
+exit
+ip nat inside source list 1 interface gigabitEthernet7/0
 !
 
-
-
+8) Router INTERNET
+! aula 07
+enable
+configure terminal
+hostname INTERNET
+interface loopback 0
+ip address 8.8.8.8 255.255.255.0
+exit
+interface g7/0
+ip address 1.1.1.2 255.255.255.252
+end
+wr
+!
