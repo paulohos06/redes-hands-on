@@ -225,6 +225,13 @@ exit
 ip route 0.0.0.0 0.0.0.0 10.99.99.1
 end
 wr
+! aula 08
+enable
+configure terminal
+interface range g1/0/1-2
+channel-group 1 mode active
+end
+wr
 !
 
 6) Switch DC 2
@@ -279,6 +286,38 @@ ip address 8.8.8.8 255.255.255.0
 exit
 interface g7/0
 ip address 1.1.1.2 255.255.255.252
+end
+wr
+!
+
+9) Switch CORE 2
+! aula 08
+enable
+configure terminal
+hostname CORE2
+vlan 100
+name FINANCEIRO
+exit
+vlan 200
+name RH
+exit
+vlan 300
+name DIRETORIA
+exit
+vlan 400
+name DC
+exit
+vlan 500
+name INTERNET
+exit
+interface g1/0/1
+switchport mode trunk
+exit
+interface g1/0/2
+swtichport mode trunk
+exit
+interface range g1/0/1-2
+channel-group 1 mode active
 end
 wr
 !
