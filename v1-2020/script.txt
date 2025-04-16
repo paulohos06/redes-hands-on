@@ -211,6 +211,20 @@ ip helper-address 10.0.0.20
 exit
 end
 wr
+! aula 06
+enable
+configure terminal
+interface vlan 500
+ip address 10.99.99.10 255.255.255.0
+no shutdown
+exit
+interface g1/0/9
+switchport mode access
+switchport access vlan 500
+exit
+ip route 0.0.0.0 0.0.0.0 10.99.99.1
+end
+wr
 !
 
 6) Switch DC 2
@@ -226,5 +240,17 @@ switchport mode access
 switchport access vlan
 exit
 !
+
+7) Router ISP-BATATA
+! aula 06
+enable
+configure terminal
+hostname ISP-BATATA
+interface g0/6
+ip add 10.99.99.1 255.255.255.0
+no shutdown
+exit
+!
+
 
 
