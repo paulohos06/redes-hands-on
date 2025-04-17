@@ -37,6 +37,13 @@ switchport mode access
 switchport access vlan 100
 end
 wr
+! aula 09
+enable
+configure terminal
+interface g0/2
+switchport mode trunk
+end
+wr
 !
 
 2) Switch AC2
@@ -69,6 +76,13 @@ switchport mode access
 switchport access vlan 200
 end
 wr
+! aula 09
+enable
+configure terminal
+interface g0/2
+switchport mode trunk
+end
+wr
 !
 
 3) Switch AC3
@@ -99,6 +113,13 @@ configure terminal
 interface fa0/3
 switchport mode access
 switchport access vlan 300
+end
+wr
+! aula 09
+enable
+configure terminal
+interface g0/2
+switchport mode trunk
 end
 wr
 !
@@ -138,6 +159,13 @@ exit
 interface fa0/4
 switchport mode access
 switchport access vlan 200
+end
+wr
+! aula 09
+enable
+configure terminal
+interface g0/2
+switchport mode trunk
 end
 wr
 !
@@ -232,6 +260,12 @@ interface range g1/0/1-2
 channel-group 1 mode active
 end
 wr
+! aula 09
+enable
+configure terminal
+spanning-tree vlan 100,200,300,400 priority 0
+end
+wr
 !
 
 6) Switch DC 2
@@ -318,6 +352,12 @@ swtichport mode trunk
 exit
 interface range g1/0/1-2
 channel-group 1 mode active
+end
+wr
+! aula 09
+enable
+configure terminal
+spanning-tree vlan 100,200,300,400 priority 4096
 end
 wr
 !
