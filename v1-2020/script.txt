@@ -266,6 +266,42 @@ configure terminal
 spanning-tree vlan 100,200,300,400 priority 0
 end
 wr
+! aula 10
+enable configure terminal
+interface vlan 100
+no ip address 172.16.0.1 255.255.255.0
+ip address 172.16.0.2 255.255.255.0
+standby version 2
+standby 100 ip 172.16.0.1
+standby 100 priority 120
+standby 100 preempt
+exit
+interface vlan 200
+no ip address 172.16.10.1 255.255.255.0
+ip address 172.16.10.2 255.255.255.0
+standby version 2
+standby 200 ip 172.16.10.1
+standby 200 priority 120
+standby 200 preempt
+exit
+interface vlan 300
+no ip address 172.16.20.1 255.255.255.0
+ip address 172.16.20.2 255.255.255.0
+standby version 2
+standby 300 ip 172.16.20.1
+standby 300 priority 120
+standby 300 preempt
+exit
+interface vlan 400
+no ip address 10.0.0.1 255.255.255.0
+ip address 10.0.0.2 255.255.255.0
+standby version 2
+standby 400 ip 10.0.0.1
+standby 400 priority 120
+standby 400 preempt
+exit
+end
+wr
 !
 
 6) Switch DC 2
@@ -358,6 +394,36 @@ wr
 enable
 configure terminal
 spanning-tree vlan 100,200,300,400 priority 4096
+end
+wr
+! aula 10
+enable
+configure terminal
+interface vlan 100
+ip address 172.16.0.3 255.255.255.0
+ip helper-address 10.0.0.20
+standby version 2
+standby 100 ip 172.16.0.1
+exit
+interface vlan 200
+ip address 172.16.10.3 255.255.255.0
+ip helper-address 10.0.0.20
+standby version 2
+standby 200 ip 172.16.0.1
+exit
+interface vlan 300
+ip address 172.16.20.3 255.255.255.0
+ip helper-address 10.0.0.20
+standby version 2
+standby 300 ip 172.16.0.1
+exit
+interface vlan 400
+ip address 10.0.0.3 255.255.255.0
+ip helper-address 10.0.0.20
+standby version 2
+standby 400 ip 10.0.0.1
+exit
+ip routing
 end
 wr
 !
