@@ -344,6 +344,17 @@ interface g7/0
 ip nat outside
 exit
 ip nat inside source list 1 interface gigabitEthernet7/0
+end
+wr
+! aula 11
+enable
+configure terminal
+interface GigabitEthernet6/0
+no ip add 10.99.99.1 255.255.255.0
+ip add 10.99.99.2 255.255.255.0
+standby 10 ip 10.99.99.1
+standby 10 priority 110
+standby 10 preempt
 !
 
 8) Router INTERNET
@@ -356,6 +367,13 @@ ip address 8.8.8.8 255.255.255.0
 exit
 interface g7/0
 ip address 1.1.1.2 255.255.255.252
+end
+wr
+! aula 11
+enable
+configure terminal
+interface g6/0
+ip address 2.2.2.2 255.255.255.252
 end
 wr
 !
@@ -426,4 +444,42 @@ exit
 ip routing
 end
 wr
+! aula 11
+enable
+configure terminal
+ip route 0.0.0.0 0.0.0.0 10.99.99.2
+interface vlan 500
+ip address 10.99.99.11 255.255.255.0
+exit
+interface g1/0/9
+switchport mode access
+switchport access vlan 500
+end
+wr
 !
+
+10) Router ISP-BROCOLIS
+! aula 11
+enable
+configure terminal
+interface g7/0
+ip address 2.2.2.1 255.255.255.252
+ip nat outside
+exit
+interface g6/0
+ip address 10.99.99.3 255.255.255.0
+ip nat inside
+standby 10 ip 10.99.99.1
+exit
+access-list 1 permit any
+ip nat inside source list 1 interface GigabitEthernet7/0 overload
+ip route 172.16.0.0 255.255.255.0 10.99.99.11 
+ip route 172.16.10.0 255.255.255.0 10.99.99.11 
+ip route 172.16.20.0 255.255.255.0 10.99.99.11 
+ip route 10.0.0.0 255.255.255.0 10.99.99.11 
+ip route 0.0.0.0 0.0.0.0 2.2.2.2 
+end
+wr
+!
+
+
