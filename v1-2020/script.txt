@@ -302,6 +302,16 @@ standby 400 preempt
 exit
 end
 wr
+! aula 12
+enable
+configure terminal
+access-list 100 deny tcp 172.16.0.0 0.0.0.255 host 10.0.0.30 eq 80
+access-list 100 deny tcp 172.16.0.0 0.0.0.255 host 10.0.0.30 eq 443
+access-list 100 permit ip any any
+interface vlan 400
+ip access-group 100 out
+end
+wr
 !
 
 6) Switch DC 2
@@ -456,6 +466,17 @@ switchport mode access
 switchport access vlan 500
 end
 wr
+! aula 12
+enable
+configure terminal
+access-list 100 deny tcp 172.16.0.0 0.0.0.255 host 10.0.0.30 eq 80
+access-list 100 deny tcp 172.16.0.0 0.0.0.255 host 10.0.0.30 eq 443
+access-list 100 permit ip any any
+interface vlan 400
+ip access-group 100 out
+end
+wr
+!
 !
 
 10) Router ISP-BROCOLIS
